@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" xml:lang="en">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8,IE=9,IE=10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="shortcut icon" href="./images/favicon.png" />
+    <link rel="apple-touch-icon" href="./images/tchicon.png" />
+    <link rel="stylesheet" href="./twc.css" />
+    <script type="text/javascript" src="./twc.js"></script>
+    <title>Transmission Web Control</title>
+  </head>
+
+  <body>
+
+    <ul class="torrents" id="torrents">
+    </ul>
+
+    <div class="toolbar" id="toolbar">
+      <input
+        class="add-torrent-input"
+        id="add-torrent-input"
+        type="file"
+        name="torrent-files[]"
+        multiple="true"
+        hidden/>
+      <button
+        class="button"
+        id="add-torrent"
+        data-button="add-torrents">
+        <svg
+          class="svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="6" y1="2" x2="6" y2="10"></line>
+          <line x1="2" y1="6" x2="10" y2="6"></line></svg> 
+      </button>
+      <button
+        class="button"
+        id="remove-torrent"
+        data-button="remove-torrents">
+        <svg
+          class="svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="3" y1="3" x2="9" y2="9"></line>
+          <line x1="3" y1="9" x2="9" y2="3"></line></svg> 
+      </button>
+      <div class="flexible-space"></div>
+      <button
+        class="button"
+        id="start-torrents"
+        data-button="start-torrents">
+        <svg
+          class="svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="4" y1="2" x2="10" y2="6"></line>
+          <line x1="10" y1="6" x2="4" y2="10"></line>
+          <line x1="4" y1="10" x2="4" y2="2"></line></svg>
+      </button>
+      <button
+        class="button"
+        id="stop-torrents"
+        data-button="stop-torrents">
+        <svg
+          class="svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="4" y1="3" x2="4" y2="9"></line>
+          <line x1="8" y1="3" x2="8" y2="9"></line></svg> 
+      </button>
+      <div class="flexible-space"></div>
+      <button
+        class="button off"
+        id="alt-speed"
+        data-button="alt-speed">
+        <svg
+          class="svg-off"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="6" cy="6" r="2"></circle>
+          <line x1="6" y1="6" x2="10" y2="2"></line></svg> 
+        <svg
+          class="svg-on"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="6" cy="6" r="2"></circle>
+          <line x1="6" y1="6" x2="2" y2="2"></line></svg> 
+      </button>
+    </div>
+
+    <div class="statusbar" id="statusbar">
+      <button
+        class="settings"
+        id="settings"
+        data-button="settings">
+        <div class="speed-down" id="speed-down"></div>
+        <div class="speed-up" id="speed-up"></div>
+      </button>
+    </div>
+
+  </body>
+</html>

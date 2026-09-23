@@ -1,0 +1,403 @@
+/* src/css/twc.scss */
+:root {
+  --z-index-toolbar: 3;
+  --z-index-statusbar: 3;
+  --z-index-dialog: 5;
+  --toolbar-height: 40px;
+  --progress: 100%;
+  --dialog-padding: 5px;
+  --red-300: #cf6679;
+  --red-500: #cf212e;
+  --red-700: #d73a49;
+  --green-300: #26aa55;
+  --green-500: #67c87f;
+  --green-700: #7cef99;
+  --blue-100: #002244;
+  --blue-300: #357aaa;
+  --blue-500: #1847d4;
+  --blue-700: #2c7fea;
+  --blue-900: #bbddff;
+  --yellow-500: #ffea7f;
+  --black: #000000ee;
+  --grey-100: #000000;
+  --grey-300: #171717;
+  --grey-350: #373737;
+  --grey-500: #777777;
+  --grey-650: #d7d7d7;
+  --grey-700: #f7f7f7;
+  --grey-900: #ffffff;
+  --white: #ffffffee;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: var(--grey-300);
+    --color-bg-toolbar: var(--black);
+    --color-bg-statusbar: var(--black);
+    --color-bg-odd: var(--grey-300);
+    --color-bg-even: var(--grey-300);
+    --color-bg-selected: var(--blue-100);
+    --color-bg-dialog: var(--grey-100);
+    --color-bg-dialog-input: var(--grey-100);
+    --color-bg-dialog-button: var(--grey-100);
+    --color-border: var(--grey-350);
+    --color-border-toolbar: var(--grey-100);
+    --color-border-statusbar: var(--grey-100);
+    --color-fg-primary: var(--grey-650);
+    --color-fg-disabled: var(--grey-500);
+    --color-fg-selected: var(--grey-650);
+    --color-fg-error: var(--red-500);
+    --color-fg-dialog: var(--grey-700);
+    --color-progressbar-fg-1: var(--grey-700);
+    --color-progressbar-fg-2: var(--grey-700);
+    --color-progressbar-fg-3: var(--grey-700);
+    --color-progressbar-leech: var(--blue-300);
+    --color-progressbar-magnet: var(--yellow-500);
+    --color-progressbar-paused: var(--grey-500);
+    --color-progressbar-queued: var(--blue-500);
+    --color-progressbar-seed-1: var(--green-300);
+    --color-progressbar-seed-2: var(--green-500);
+    --color-progressbar-seed-3: var(--grey-500);
+    --color-progressbar-verify: var(--yellow-500);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg-primary: var(--grey-700);
+    --color-bg-toolbar: var(--white);
+    --color-bg-statusbar: var(--white);
+    --color-bg-odd: var(--grey-700);
+    --color-bg-even: var(--grey-700);
+    --color-bg-selected: var(--blue-900);
+    --color-bg-dialog: var(--grey-900);
+    --color-bg-dialog-input: var(--grey-900);
+    --color-bg-dialog-button: var(--grey-900);
+    --color-border: var(--grey-650);
+    --color-border-toolbar: var(--grey-900);
+    --color-border-statusbar: var(--grey-900);
+    --color-fg-primary: var(--grey-350);
+    --color-fg-disabled: var(--grey-500);
+    --color-fg-selected: var(--grey-350);
+    --color-fg-error: var(--red-500);
+    --color-fg-dialog: var(--grey-300);
+    --color-progressbar-fg-1: var(--grey-300);
+    --color-progressbar-fg-2: var(--grey-300);
+    --color-progressbar-fg-3: var(--grey-300);
+    --color-progressbar-leech: var(--blue-700);
+    --color-progressbar-magnet: var(--yellow-500);
+    --color-progressbar-paused: var(--grey-500);
+    --color-progressbar-queued: var(--blue-500);
+    --color-progressbar-seed-1: var(--green-700);
+    --color-progressbar-seed-2: var(--green-500);
+    --color-progressbar-seed-3: var(--grey-500);
+    --color-progressbar-verify: var(--yellow-500);
+  }
+}
+@media (orientation: landscape) {
+  :root .torrents {
+    padding: calc(var(--toolbar-height) + 30px) 0px 10px;
+  }
+  :root .torrent {
+    border-top: 1px solid var(--color-border);
+  }
+  :root .toolbar {
+    top: 15px;
+    left: 15px;
+  }
+  :root .statusbar {
+    top: 15px;
+    right: 15px;
+  }
+}
+@media (orientation: portrait) {
+  :root .torrents {
+    padding: 10px 0px calc(var(--toolbar-height) + 30px);
+  }
+  :root .torrent {
+    border-bottom: 1px solid var(--color-border);
+  }
+  :root .toolbar {
+    bottom: 15px;
+    left: 15px;
+  }
+  :root .statusbar {
+    bottom: 15px;
+    right: 15px;
+  }
+}
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-fg-primary);
+  font-family: Helvetica, Arial;
+  margin: 0;
+  height: 100vh;
+  overflow: auto;
+}
+.torrents {
+  cursor: pointer;
+  list-style-type: none;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+  user-select: none;
+}
+.torrents .torrent {
+  display: grid;
+  grid-column-gap: 12px;
+  grid-template-areas: "name labels" "peers peers" "progressbar progressbar" "progress-text progress-text";
+  padding: 15px 15px;
+  align-items: center;
+}
+.torrents .torrent:nth-child(odd) {
+  background-color: var(--color-bg-odd);
+}
+.torrents .torrent:nth-child(even) {
+  background-color: var(--color-bg-even);
+}
+.torrents .torrent .torrent-name {
+  grid-area: name;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.torrents .torrent .torrent-peer-details {
+  grid-area: peers;
+  font-size: small;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.torrents .torrent .torrent-progress-bar {
+  grid-area: progressbar;
+  display: flex;
+  flex-direction: row;
+}
+.torrents .torrent .torrent-progress-details {
+  grid-area: progress-text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.torrents .torrent .torrent-progress-details.error {
+  color: var(--color-fg-error);
+}
+.torrents .torrent.paused {
+  color: var(--color-fg-disabled);
+}
+.torrents .torrent.paused:not(.selected) .torrent-progress-bar {
+  color: var(--color-fg-primary);
+}
+.torrents .torrent.selected {
+  background-color: var(--color-bg-selected);
+  color: var(--color-fg-selected);
+}
+.torrents .torrent-progress-bar {
+  position: relative;
+  flex-grow: 1;
+  margin: 2px 0px;
+  height: 3px;
+  border-radius: 100vh;
+  border: 1px solid var(--color-border);
+}
+.torrents .torrent-progress-bar.leech::before {
+  background: var(--color-progressbar-leech);
+  color: var(--color-progressbar-fg-2);
+}
+.torrents .torrent-progress-bar.leech.queued::before {
+  background: var(--color-progressbar-queued);
+}
+.torrents .torrent-progress-bar.magnet::before {
+  background: var(--color-progressbar-magnet);
+}
+.torrents .torrent-progress-bar.seed.paused::before {
+  background: var(--color-progressbar-seed-3);
+  color: var(--color-progressbar-fg-1);
+}
+.torrents .torrent-progress-bar.seed:not(.paused)::before {
+  background: var(--color-progressbar-seed-1);
+  color: var(--color-progressbar-fg-2);
+}
+.torrents .torrent-progress-bar.seed:not(.paused)::after {
+  background: var(--color-progressbar-seed-2);
+  color: var(--color-progressbar-fg-3);
+}
+.torrents .torrent-progress-bar.seed.queued::before {
+  background-color: var(--color-progressbar-seed-1);
+}
+.torrents .torrent-progress-bar.seed::before {
+  background-color: var(--color-progressbar-seed-1);
+  color: var(--color-progressbar-fg-2);
+}
+.torrents .torrent-progress-bar.verify::before {
+  background: var(--color-progressbar-verify);
+  color: #000;
+}
+.torrents .torrent-progress-bar.paused::before {
+  background: var(--color-progressbar-paused);
+  color: var(--color-progressbar-fg-1);
+}
+.torrents .torrent-progress-bar::before,
+.torrents .torrent-progress-bar::after {
+  content: attr(data-progress);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 3px;
+  text-align: center;
+}
+.torrents .torrent-progress-bar::before {
+  clip-path: polygon(0 0, var(--progress, 30%) 0, var(--progress, 30%) 100%, 0 100%);
+}
+.torrents .torrent-progress-bar::after {
+  clip-path: polygon(var(--progress, 30%) 0, 100% 0, 100% 100%, var(--progress, 30%) 100%);
+}
+.toolbar {
+  position: fixed;
+  padding: 0px 15px;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: var(--toolbar-height);
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-toolbar);
+  border-radius: 100vh;
+  border: 3px solid var(--color-border-toolbar);
+  z-index: var(--z-index-toolbar);
+}
+.toolbar .button {
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  user-select: none;
+}
+.toolbar .button.off svg.svg-off {
+  display: block;
+}
+.toolbar .button.off svg.svg-on {
+  display: none;
+}
+.toolbar .button.on svg.svg-off {
+  display: none;
+}
+.toolbar .button.on svg.svg-on {
+  display: block;
+}
+.toolbar .button:disabled {
+  cursor: default;
+}
+.toolbar .button:disabled svg {
+  stroke: var(--color-fg-disabled);
+}
+.toolbar .button:enabled {
+  cursor: pointer;
+}
+.toolbar .button:enabled svg {
+  stroke: var(--color-fg-primary);
+}
+.statusbar {
+  position: fixed;
+  padding: 0px 15px;
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: var(--toolbar-height);
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-statusbar);
+  border-radius: 100vh;
+  border: 3px solid var(--color-border-statusbar);
+  z-index: var(--z-index-statusbar);
+}
+.statusbar .settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background-color: transparent;
+  border: 0;
+  user-select: none;
+}
+.statusbar .speed-down {
+  display: flex;
+  justify-content: end;
+  color: var(--color-fg-primary);
+}
+.statusbar .speed-up {
+  display: flex;
+  justify-content: end;
+  color: var(--color-fg-primary);
+}
+.dialog-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  z-index: var(--z-index-dialog);
+}
+.dialog {
+  min-width: 30%;
+  max-width: 90%;
+  position: relative;
+  background-color: var(--color-bg-dialog);
+  color: var(--color-fg-dialog);
+  padding: var(--dialog-padding);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  z-index: var(--z-index-dialog);
+}
+.dialog .dialog-title {
+  text-align: center;
+  margin: 15px 15px;
+}
+.dialog .dialog-body {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 15px;
+}
+.dialog .dialog-body .dialog-label {
+  margin: 5px 0px;
+}
+.dialog .dialog-body .dialog-input {
+  margin: 5px 0px;
+  padding: var(--dialog-padding);
+  background: var(--color-bg-dialog-input);
+  color: var(--color-fg-primary);
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+}
+.dialog .dialog-body .dialog-input:focus {
+  margin: 5px 0px;
+  padding: var(--dialog-padding);
+  background: var(--color-bg-dialog-input);
+  color: var(--color-fg-primary);
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+}
+.dialog .dialog-buttons {
+  display: flex;
+  float: right;
+  margin: 15px 15px;
+}
+.dialog .dialog-buttons .dialog-button {
+  margin: 0px 15px;
+  padding: 5px 30px;
+  background: var(--color-bg-dialog-button);
+  color: var(--color-fg-primary);
+  border-radius: 100vh;
+  border: 1px solid var(--color-border);
+}

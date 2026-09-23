@@ -1,0 +1,14 @@
+{
+  "name": "transmission-web-control",
+  "main": "twc.js",
+  "type": "module",
+  "scripts": {
+    "dev": "set DEV=true && node esbuild.js",
+    "build": "node esbuild.js"
+  },
+  "dependencies": {
+    "esbuild": "^0.27.1",
+    "esbuild-sass-plugin": "^3.3.1",
+    "sass": "^1.95.0"
+  }
+}
