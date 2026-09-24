@@ -3,7 +3,7 @@
   "main": "twc.js",
   "type": "module",
   "scripts": {
-    "dev": "set DEV=true && node esbuild.js",
+    "dev": "node esbuild.js --dev",
     "build": "node esbuild.js"
   },
   "dependencies": {
